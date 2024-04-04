@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Task from './components/Task';
-import TaskList from './components/TaskList';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap'; // Import Bootstrap components
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [newTodoText, setNewTodoText] = useState('');
-  const backendUrl =  'http://localhost:5050/api/todos'; 
+  const backendUrl = 'http://localhost:5050/api/todos';
 
-  // Fetch todos from backend on component mount
   useEffect(() => {
     const fetchTodos = async () => {
       try {
@@ -28,7 +26,7 @@ function App() {
   };
 
   const handleAddTodo = async () => {
-    if (!newTodoText.trim()) return; // Prevent adding empty todos
+    if (!newTodoText.trim()) return;
 
     try {
       const response = await fetch(backendUrl, {
@@ -38,7 +36,7 @@ function App() {
       });
 
       const newTodo = await response.json();
-      setTodos([...todos, newTodo]); // Add new todo to state
+      setTodos([...todos, newTodo]);
       setNewTodoText('');
     } catch (error) {
       console.error('Error adding todo:', error);
@@ -80,10 +78,32 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Todo List</h1>
-      <input type="text" value={newTodoText} onChange={handleInputChange} />
-      <button onClick={handleAddTodo}>Add Todo</button>
-      <TaskList todos={todos} onToggleCompleted={handleToggleCompleted} onDeleteTodo={handleDeleteTodo} />
+      <Container>
+        <h1 className="text-center mt-5 mb-4">Todo List</h1>
+        <Row className="mb-3">
+          <Col xs={8}>
+            <Form.Control type="text" value={newTodoText} onChange={handleInputChange} placeholder="Enter new todo" />
+          </Col>
+          <Col xs={4}>
+            <Button onClick={handleAddTodo} variant="primary" className="w-100">Add Todo</Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <ul className="list-group">
+              {todos.map((todo) => (
+                <li key={todo._id} className={`list-group-item ${todo.completed ? 'completed' : ''}`}>
+                  <span>{todo.text}</span>
+                  <div className="buttons">
+                    <Button onClick={() => handleToggleCompleted(todo._id)} variant={todo.completed ? 'success' : 'outline-success'} className="me-2">Toggle</Button>
+                    <Button onClick={() => handleDeleteTodo(todo._id)} variant="danger">Delete</Button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

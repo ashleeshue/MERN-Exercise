@@ -1,0 +1,54 @@
+/* App.css */
+body {
+    background-color: #e0e5ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    background-color: #e0e5ec;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px #b8bfc9, 
+                -5px -5px 15px #ffffff;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .form-control {
+    background-color: #e0e5ec;
+    border: none;
+    box-shadow: inset 3px 3px 5px #b8bfc9, 
+                inset -3px -3px 5px #ffffff;
+  }
+  
+  .list-group-item {
+    background-color: #e0e5ec;
+    border: none;
+    margin-top: 10px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px #b8bfc9, 
+                -5px -5px 15px #ffffff;
+  }
+  
+  .list-group-item span {
+    flex: 1;
+  }
+  
+  .buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .buttons button {
+    margin-left: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px #b8bfc9, 
+                -10px -10px 15px #ffffff;
+  }
+  

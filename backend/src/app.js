@@ -1,3 +1,4 @@
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -6,10 +7,10 @@ const cors = require('cors');
 const todoRoutes = require('./routes/todos');
 
 const app = express();
-const port = process.env.PORT || 5050;
+const port = process.env.PORT || 5051;
 // this should always be in .env
 
-const uri = "mongodb+srv://<username>:<password>@----.----.mongodb.net"
+const uri = "mongodb+srv://ashuemaker:qYAu6FcO8bp8tDZR@todo.m84rciz.mongodb.net/?retryWrites=true&w=majority&appName=Todo"
 // Connect to MongoDB using environment variable
 mongoose.set('strictQuery', false)
 
